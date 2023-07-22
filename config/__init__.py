@@ -1,7 +1,6 @@
 import os
 from flask import Flask
 from dotenv import load_dotenv
-# import mysql.connector
 
 # Load environment variables from .env file
 load_dotenv()
