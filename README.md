@@ -42,8 +42,19 @@ Proyek ini merupakan RESTful API yang dibangun menggunakan Flask, sebuah framewo
 
 ```sh
     Penggunaan SELECT methods=['GET']
-    1. exampleModel.builder().select(['id', 'title', 'description']).get()
-    2. exampleModel.builder().where('id', '=', id).first()
+    - exampleModel.builder().select(['id', 'title', 'description']).get()
+
+    Penggunaan Clausa WHERE methods=['GET']
+    - exampleModel.builder().where('id', '=', id).first()
+
+    Penggunaan Clausa ORDER BY methods=['GET']
+    - roleModel.builder().select(['id', 'role']).order_by('id', 'desc').get()
+
+    Penggunaan Clausa GROUP BY methods=['GET']
+    - roleModel.builder().select(['id', 'role']).group_by(['id', 'role']).get()
+
+    Penggunaan JOIN methods=['GET']
+    - response = userModel.builder().select(['users.id', 'users.email', 'users.password', 'roles.role']).join('roles', 'users.role_id = roles.id').get()
 
     Penggunaan INSERT methods=['POST']
     req = request.json

@@ -4,8 +4,9 @@ class QueryBuilder:
         self.table = model.table
         self.columns = ['*']
         self.where_conditions = []
-        self.order_by = None
-        self.group_by = None
+        self.order_by_column = None
+        self.order_by_direction = None
+        self.group_by_columns = []
         self.join_tables = []
         self.insert_data = {}
         self.update_data = {}
@@ -19,12 +20,16 @@ class QueryBuilder:
         self.where_conditions.append(f"{column} {operator} '{value}'")
         return self
 
-    def order_by(self, column):
-        self.order_by = column
+    def order_by(self, column, direction='asc'):
+        self.order_by_column = column
+        self.order_by_direction = direction
         return self
 
-    def group_by(self, column):
-        self.group_by = column
+    def group_by(self, columns):
+        if isinstance(columns, str):
+            self.group_by_columns.append(columns)
+        elif isinstance(columns, list):
+            self.group_by_columns.extend(columns)
         return self
 
     def join(self, table, on_condition):
@@ -33,6 +38,7 @@ class QueryBuilder:
 
     def get(self):
         query = self.build()
+        print(query)
         return self.model.fetchall(query)
 
     def first(self):
@@ -84,10 +90,11 @@ class QueryBuilder:
                 where_clause = " AND ".join(self.where_conditions)
                 query += f' WHERE {where_clause}'
 
-            if self.order_by:
-                query += f' ORDER BY {self.order_by}'
+            if self.group_by_columns:
+                group_by_columns_str = ', '.join(self.group_by_columns)
+                query += f" GROUP BY {group_by_columns_str}"
 
-            if self.group_by:
-                query += f' GROUP BY {self.group_by}'
-
+            if self.order_by_column:
+                query += f' ORDER BY {self.order_by_column} {self.order_by_direction}'
+        
         return query
