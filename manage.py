@@ -11,5 +11,5 @@ def welcome():
 config.app.register_blueprint(example_route.example, url_prefix='/api')
 
 if __name__ == '__main__':
-    # models.test_connection()
+    # models.Model().test_connection()
     config.serve()

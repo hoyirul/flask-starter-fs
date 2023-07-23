@@ -1,13 +1,12 @@
 from flask import request
-from config.db import connectdb
 from models.example_model import ExampleModel
-from traits import api_response
+from traits.api_response import ApiResponse
 
 exampleModel = ExampleModel()
 
 class ExampleController:
 
-    api = api_response
+    api = ApiResponse()
     
     def index(self):
         try:

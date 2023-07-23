@@ -1,6 +1,5 @@
 from flask import Blueprint
 from controllers.example_controller import ExampleController
-from config import app
 
 exampleController = ExampleController()
 example = Blueprint('example', __name__)

@@ -1,9 +1,11 @@
-from config.db import connectdb
+from config.db import Database
 
+db = Database()
 class Model:
+
     def test_connection(self):
         try:
-            connection = connectdb()
+            connection = db.connectdb()
             if connection.is_connected():
                 print('Database connection successful.')
                 connection.close()
@@ -13,7 +15,7 @@ class Model:
             print('Error:', str(e))
 
     def fetchall(self, query):
-        connection = connectdb()
+        connection = db.connectdb()
         cursor = connection.cursor(dictionary=True)
         cursor.execute(query)
         response = cursor.fetchall()
@@ -22,7 +24,7 @@ class Model:
         return response
 
     def fetchone(self, query):
-        connection = connectdb()
+        connection = db.connectdb()
         cursor = connection.cursor(dictionary=True)
         cursor.execute(query)
         response = cursor.fetchone()
@@ -31,7 +33,7 @@ class Model:
         return response
     
     def execute(cls, query):
-        connection = connectdb()
+        connection = db.connectdb()
         cursor = connection.cursor()
         cursor.execute(query)
         connection.commit()
