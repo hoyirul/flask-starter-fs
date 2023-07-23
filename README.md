@@ -1,4 +1,4 @@
-# Flask Template API
+# Flask Template API (BETA Version 1.0)
 adalah aplikasi yang bisa digunakan untuk konsep MVC pada framework Flask pada python, python versi >= 3
 
 ## Cara instalasi

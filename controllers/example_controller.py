@@ -11,34 +11,32 @@ class ExampleController:
     
     def index(self):
         try:
-            response = exampleModel.findAll(
-                columns=['id', 'title', 'description']
-            )
+            response = exampleModel.builder().select(['id', 'title', 'description']).get()
+
             return self.api.success(response, 200)
         except Exception as e:
             return self.api.errors(e, 500)
 
     def store(self):
         try:
-            data = request.json
-            response = {
-                'title': data['title'],
-                'description': data['description'],
+            req = request.json
+            data = {
+                'title': f"'{req['title']}'",
+                'description': f"'{req['description']}'",
             }
-            
-            exampleModel.create((response['title'], response['description']))
-            return self.api.success(response, 201)
+
+            query = exampleModel.builder().insert(data).build()
+            exampleModel.execute(query)
+
+            return self.api.success(data, 201)
         except Exception as e:
             return self.api.errors(e, 500)
 
     def show(self, id):
         try:
-            response = exampleModel.findAll(
-                columns=['id', 'title', 'description'],
-                where=[f'id = {id}']
-            )
+            response = exampleModel.builder().where('id', '=', id).first()
 
-            if(not response):
+            if not response:
                 return self.api.success({'message': f'id `{id}` not found!'}, 200)
 
             return self.api.success(response, 200)
@@ -47,21 +45,23 @@ class ExampleController:
 
     def update(self, id):
         try:
-            data = request.json
-            response = {
-                'title': data['title'],
-                'description': data['description'],
+            req = request.json
+            data = {
+                'title': f"'{req['title']}'",
+                'description': f"'{req['description']}'",
             }
+            query = exampleModel.builder().where('id', '=', id).update(data).build()
+            exampleModel.execute(query)
 
-            exampleModel.update((response['title'], response['description'], id))
-            
-            return self.api.success(response, 200)
+            return self.api.success(data, 200)
         except Exception as e:
             return self.api.errors(e, 500)
 
     def destroy(self, id):
         try:
-            exampleModel.delete(id)
-            return self.api.success('Data deleted successfully!', 200)
+            query = exampleModel.builder().where('id', '=', id).delete().build()
+            exampleModel.execute(query)
+
+            return self.api.success(f'Data with id `{id}` deleted successfully!', 200)
         except Exception as e:
             return self.api.errors(e, 500)

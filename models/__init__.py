@@ -29,13 +29,12 @@ class Model:
         cursor.close()
         connection.close()
         return response
-
-    def commit(self, query, data):
+    
+    def execute(cls, query):
         connection = connectdb()
-        cursor = connection.cursor(dictionary=True)
-        response = cursor.execute(query, data)
+        cursor = connection.cursor()
+        cursor.execute(query)
         connection.commit()
         cursor.close()
         connection.close()
-        return response
     
