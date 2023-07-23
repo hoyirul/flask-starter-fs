@@ -38,6 +38,36 @@ Proyek ini merupakan RESTful API yang dibangun menggunakan Flask, sebuah framewo
 
 5. Buka browser dan akses [http://127.0.0.1:8080](http://127.0.0.1:8080) untuk memulai penggunaan API.
 
+## Penggunaan QueryBuilder
+
+```sh
+    Penggunaan SELECT methods=['GET']
+    1. exampleModel.builder().select(['id', 'title', 'description']).get()
+    2. exampleModel.builder().where('id', '=', id).first()
+
+    Penggunaan INSERT methods=['POST']
+    req = request.json
+    data = {
+        'title': f"'{req['title']}'",
+        'description': f"'{req['description']}'",
+    }
+
+    query = exampleModel.builder().insert(data).build()
+    exampleModel.execute(query)
+
+    Penggunaan UPDATE methods=['PUT']
+    req = request.json
+    data = {
+        'title': f"'{req['title']}'",
+        'description': f"'{req['description']}'",
+    }
+    query = exampleModel.builder().where('id', '=', id).update(data).build()
+    exampleModel.execute(query)
+
+    Penggunaan DELETE methods=['DELETE']
+    query = exampleModel.builder().where('id', '=', id).delete().build()
+            exampleModel.execute(query)
+```
 ## Versi
 
 **Versi 1.0.0**
