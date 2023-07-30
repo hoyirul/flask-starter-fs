@@ -102,3 +102,4 @@ Anda dapat berkontribusi pada proyek ini dengan cara berikut:
 ## Pengarang
 
 Mochammad Hairullah
+Developer
