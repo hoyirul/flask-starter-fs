@@ -17,7 +17,18 @@ class QueryBuilder:
         return self
 
     def where(self, column, operator, value):
-        self.where_conditions.append(f"{column} {operator} '{value}'")
+        condition = f"{column} {operator} {value}"
+        self.where_conditions.append(condition)
+        return self
+
+    def and_where(self, column, operator, value):
+        condition = f"AND {column} {operator} '{value}'"
+        self.where_conditions.append(condition)
+        return self
+    
+    def or_where(self, column, operator, value):
+        condition = f"OR {column} {operator} '{value}'"
+        self.where_conditions.append(condition)
         return self
 
     def order_by(self, column, direction='asc'):
@@ -87,7 +98,7 @@ class QueryBuilder:
                     query += f' INNER JOIN {join_table} ON {on_condition}'
 
             if self.where_conditions:
-                where_clause = " AND ".join(self.where_conditions)
+                where_clause = " ".join(self.where_conditions)
                 query += f' WHERE {where_clause}'
 
             if self.group_by_columns:
@@ -96,5 +107,5 @@ class QueryBuilder:
 
             if self.order_by_column:
                 query += f' ORDER BY {self.order_by_column} {self.order_by_direction}'
-        
+        print(query)
         return query

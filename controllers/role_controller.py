@@ -24,3 +24,19 @@ class RoleController:
             return self.api.success(response, 200)
         except Exception as e:
             return self.api.errors(e, 500)
+
+    def find_with_or_where(self):
+        try:
+            response = roleModel.builder().select(['id', 'role']).where('id', '>', '1').or_where('role', '!=', 'admin').get()
+            
+            return self.api.success(response, 200)
+        except Exception as e:
+            return self.api.errors(e, 500)
+    
+    def find_with_and_where(self):
+        try:
+            response = roleModel.builder().select(['id', 'role']).where('id', '>', '1').and_where('role', '=', 'admin').get()
+            
+            return self.api.success(response, 200)
+        except Exception as e:
+            return self.api.errors(e, 500)
