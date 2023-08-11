@@ -99,7 +99,7 @@ Anda dapat berkontribusi pada proyek ini dengan cara berikut:
 
 6. Buat Pull Request baru.
 
-## Pengarang
+## Author
 
 Mochammad Hairullah
 Developer
