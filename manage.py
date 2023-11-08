@@ -1,17 +1,48 @@
-from flask import Flask
+from flask import Flask, render_template
+from traits import render, view
 import config
-from routes import example_route, user_route, role_route
+from routes import api_route, web_route
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 # import models
 
-@config.app.route('/')
-def welcome():
-    return '<h2 style="margin: 50px">Welcome to Flask Framework</h2>'
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-# Register blueprint
-config.app.register_blueprint(example_route.example, url_prefix='/api')
-config.app.register_blueprint(user_route.user, url_prefix='/api')
-config.app.register_blueprint(role_route.role, url_prefix='/api')
+def check_secret_key():
+    secret_key = os.getenv('SECRET_KEY')
+    if secret_key:
+        return True
+    else:
+        return False
+
+@app.route('/')
+def welcome():
+    data = {
+        'title': 'Welcome to Flask',
+        'docs': '',
+        'github': '',
+        'powered': 'https://flask.palletsprojects.com/en/3.0.x/'
+    }
+    return render_template(view('welcome'), data=data)
+
+# Register blueprint for API
+app.register_blueprint(api_route.api, url_prefix='/api')
+
+# Register for WEB
+app.register_blueprint(web_route.web, url_prefix='/')
 
 if __name__ == '__main__':
     # models.Model().test_connection()
-    config.serve()
+    # config.serve()
+    if check_secret_key() == False:
+        print('you have not generated a key, please generate a key with `python3 config/generate_key.py`')
+    else:
+        app.run(
+            host='0.0.0.0', 
+            port=os.getenv('APP_PORT'),
+            debug=True if os.getenv('APP_DEBUG') == 'development' else False
+        )
