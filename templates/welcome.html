@@ -1,62 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Welcome to Flask</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <style>
-      .welcome-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      .content {
-        text-align: center;
-      }
-      .title {
-        color: #1e293b;
-        font-size: 2rem;
-        margin-bottom: 10px;
-        margin-top: 30px;
-        font-weight: 500;
-      }
-      .links {
-        margin-top: 15px;
-      }
-      .links a {
-        margin: 0 5px;
-      }
-      /* Style for custom link buttons */
-      .custom-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #475569;
-        border-radius: 10px;
-        text-decoration: none;
-        color: #fff;
-        transition: all 0.3s ease;
-      }
-      .custom-btn:hover {
-        background-color: #334155;
-        text-decoration: none;
-        color: #fff;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="welcome-container">
-      <div class="content">
-        <img src="https://flask.palletsprojects.com/en/3.0.x/_images/flask-horizontal.png" alt="">
-        <div class="title">{{ data.title }}</div>
-        <div class="links">
-          <a class="custom-btn" href="#" target="_blank">Documentation</a>
-          <a class="custom-btn" href="#" target="_blank">GitHub</a>
-          <a class="custom-btn" href="{{ data.powered }}" target="_blank">Flask Framework</a>
-        </div>
+<head>
+  <title>Welcome to Flask</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="welcome-container">
+    <div class="content">
+      <img src="{{ url_for('static', filename='img/flask-horizontal.png') }}" alt="">
+      <div class="title">{{ data.title }}</div>
+      <div class="links">
+        <a class="custom-btn" href="#" target="_blank">Documentation</a>
+        <a class="custom-btn" href="#" target="_blank">GitHub</a>
+        <a class="custom-btn" href="{{ data.powered }}" target="_blank">Flask Framework</a>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
 </html>
