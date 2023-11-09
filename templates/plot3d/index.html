@@ -1,0 +1,46 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+  <!-- Page Content  -->
+  <div id="content" class="p-4 p-md-5 pt-5">
+    <h2 class="mb-4">Data Science | Plot 3D</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card w-100 rouded-lg p-2">
+          <div class="card-body">
+            <h5 class="card-title">Data Scatter Plot</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Scatter Plot</h6>
+            <img src="data:image/png;base64,{{ data.scatter3d }}" alt="Plot" class="w-100">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card w-100 rouded-lg p-2">
+          <div class="card-body">
+            <h5 class="card-title">Data Line Plot</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Line Plot</h6>
+            <img src="data:image/png;base64,{{ data.surface }}" alt="Plot" class="w-100">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card w-100 rouded-lg p-2">
+          <div class="card-body">
+            <h5 class="card-title">Data Bar Plot</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Bar Plot</h6>
+            <img src="data:image/png;base64,{{ data.trisurf }}" alt="Plot" class="w-100">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card w-100 rouded-lg p-2">
+          <div class="card-body">
+            <h5 class="card-title">Data Fill Between Plot</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Fill Between Plot</h6>
+            <img src="data:image/png;base64,{{ data.voxels }}" alt="Plot" class="w-100">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

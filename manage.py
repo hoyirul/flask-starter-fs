@@ -1,6 +1,4 @@
-from flask import Flask, render_template
-from traits import render, view
-import config
+from flask import Flask
 from routes import api_route, web_route
 from dotenv import load_dotenv
 import os
@@ -19,16 +17,6 @@ def check_secret_key():
     else:
         return False
 
-@app.route('/')
-def welcome():
-    data = {
-        'title': 'Welcome to Flask',
-        'docs': '',
-        'github': '',
-        'powered': 'https://flask.palletsprojects.com/en/3.0.x/'
-    }
-    return render_template(view('welcome'), data=data)
-
 # Register blueprint for API
 app.register_blueprint(api_route.api, url_prefix='/api')
 
@@ -37,7 +25,6 @@ app.register_blueprint(web_route.web, url_prefix='/')
 
 if __name__ == '__main__':
     # models.Model().test_connection()
-    # config.serve()
     if check_secret_key() == False:
         print('you have not generated a key, please generate a key with `python3 config/generate_key.py`')
     else:

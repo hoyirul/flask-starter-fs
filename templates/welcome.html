@@ -6,21 +6,21 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='welcome/css/style.css') }}">
 </head>
 <body>
   <div class="welcome-container">
     <div class="content">
-      <img src="{{ url_for('static', filename='img/flask-horizontal.png') }}" alt="">
+      <a href="{{ data.powered }}" target="_blank"><img src="{{ url_for('static', filename='welcome/img/flask-horizontal.png') }}" alt=""></a>
       <div class="title">{{ data.title }}</div>
       <div class="links">
-        <a class="custom-btn" href="#" target="_blank">Documentation</a>
-        <a class="custom-btn" href="#" target="_blank">GitHub</a>
+        <a class="custom-btn" href="{{ data.docs }}" target="_blank">Documentation</a>
+        <a class="custom-btn" href="{{ data.github }}" target="_blank">GitHub</a>
         <a class="custom-btn" href="{{ data.powered }}" target="_blank">Flask Framework</a>
       </div>
     </div>
   </div>
 
-  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  <script src="{{ url_for('static', filename='welcome/js/scripts.js') }}"></script>
 </body>
 </html>
