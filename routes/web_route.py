@@ -1,6 +1,6 @@
 from flask import Blueprint
 from traits import render, view
-from controllers.home_controller import HomeController
+from controllers.web.home_controller import HomeController
 
 
 homeController = HomeController()

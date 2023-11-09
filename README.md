@@ -1,10 +1,10 @@
-# Flask Template Restful API
+# Flask Template Full-Stack
 
 Proyek ini merupakan aplikasi web yang dibangun menggunakan Flask, sebuah framework web Python yang ringan dan mudah digunakan. Aplikasi ini memiliki fitur query builder yang memungkinkan pengambilan data yang lebih fleksibel dan dinamis dari database MySQL.
 
 ## Deskripsi
 
-Proyek ini merupakan RESTful API yang dibangun menggunakan Flask, sebuah framework web Python yang ringan dan mudah digunakan. API ini menyediakan endpoints untuk mengelola data pada database MySQL dengan menggunakan fitur query builder yang memungkinkan pengambilan data yang lebih fleksibel dan dinamis.
+Proyek ini merupakan Full-Stack yang dibangun menggunakan Flask, sebuah framework web Python yang ringan dan mudah digunakan. API ini menyediakan endpoints untuk mengelola data pada database MySQL dengan menggunakan fitur query builder yang memungkinkan pengambilan data yang lebih fleksibel dan dinamis.
 
 ## Fitur Utama
 

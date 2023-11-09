@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.example_controller import ExampleController
+from controllers.api.example_controller import ExampleController
 
 exampleController = ExampleController()
 
