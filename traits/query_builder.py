@@ -52,6 +52,10 @@ class QueryBuilder:
         print(query)
         return self.model.fetchall(query)
 
+    def raw(self, query):
+        print(query)
+        return self.model.fetchall(query)
+
     def first(self):
         query = self.build()
         return self.model.fetchone(query)
