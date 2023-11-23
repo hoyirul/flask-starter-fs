@@ -3,6 +3,7 @@ class QueryBuilder:
         self.model = model
         self.table = model.table
         self.columns = ['*']
+        self.query = ''
         self.where_conditions = []
         self.order_by_column = None
         self.order_by_direction = None
@@ -53,8 +54,8 @@ class QueryBuilder:
         return self.model.fetchall(query)
 
     def raw(self, query):
-        print(query)
-        return self.model.fetchall(query)
+        self.query = query
+        return self
 
     def first(self):
         query = self.build()

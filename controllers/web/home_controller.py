@@ -5,12 +5,13 @@ import base64
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm
+from traits.query_builder import QueryBuilder
 
 class HomeController:
 
   def index(self):
     return render(view('home/index'))
-  
+    
   def plot2d(self):
     data = {
       'scatter': self.scatter_plot(),

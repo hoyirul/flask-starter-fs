@@ -10,7 +10,8 @@ class ExampleController:
     
     def index(self):
         try:
-            response = exampleModel.builder().select(['id', 'title', 'description']).get()
+            # response = exampleModel.builder().select(['id', 'title', 'description']).get()
+            response = exampleModel.builder().raw('SELECT * FROM examples').get()
 
             return self.api.success(response, 200)
         except Exception as e:
