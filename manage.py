@@ -1,5 +1,5 @@
 from flask import Flask
-from routes import api_route, web_route
+from routes import api_route, web_route, test_route
 from dotenv import load_dotenv
 import os
 
@@ -21,7 +21,8 @@ def check_secret_key():
 app.register_blueprint(api_route.api, url_prefix='/api')
 
 # Register for WEB
-app.register_blueprint(web_route.web, url_prefix='/')
+app.register_blueprint(web_route.web)
+app.register_blueprint(test_route.test, url_prefix='/tests')
 
 if __name__ == '__main__':
     # models.Model().test_connection()

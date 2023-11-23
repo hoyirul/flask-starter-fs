@@ -2,7 +2,6 @@ from flask import Blueprint
 from traits import render, view
 from controllers.web.home_controller import HomeController
 
-
 homeController = HomeController()
 web = Blueprint('web', __name__)
 
